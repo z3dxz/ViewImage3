@@ -195,7 +195,7 @@ Dialog::ReturnCode Dialog::sfDialog::showDialog() {
                                 ib.Action(this);
                             }
                             else {
-                                Beep(400, 50);
+                                
                             }
                         }
                     }

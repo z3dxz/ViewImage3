@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 #include "../IncludeSFML.h"
-#include <windows.h>
 
 class Dialog {
 public:
