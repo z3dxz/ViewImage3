@@ -3,17 +3,33 @@
 #include "../UIManager/UIManager.h"
 
 class MainWindow {
+	private:
+
+	//class TestElement;
+
 	// SFML Window
 	sf::RenderWindow window;
 
-	sf::Vector2i virtualSize;
-	sf::Vector2i physicalSize;
+	sf::Vector2i vSize;
 
 	float w_scale;
 
 	UIManager uim;
 
-	void UpdatePhysicalSize();
+
+	sf::Vector2i GetPhysicalSize();
+
+	
 public:
+	inline UIManager& GetUIManager() {
+		return uim;
+	}
+	inline sf::RenderWindow& GetWindow() {
+		return window;
+	}
+
 	MainWindow();
+	bool testboolean1 = false;
+
+	void setScale();
 };

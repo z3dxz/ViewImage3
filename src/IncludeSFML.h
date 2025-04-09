@@ -5,3 +5,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
+
+// Include debugging
+#include "debugging.h"
