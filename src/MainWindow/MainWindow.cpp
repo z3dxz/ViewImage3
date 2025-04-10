@@ -1,7 +1,7 @@
 #include "MainWindow.h"
 #include <iostream>
 #include "../dialog/sfdialog.h"
-#include "TestElement.h"
+#include "../UserInterface/uilist.h"
 
 sf::Vector2i MainWindow::GetPhysicalSize() {
 	sf::Vector2i s;
@@ -10,23 +10,22 @@ sf::Vector2i MainWindow::GetPhysicalSize() {
 	return s;
 }
 
-
-
-
 MainWindow::MainWindow() {
 	// Define default parameters
-	w_scale = 1.0f; // temporarially
 
 	vSize = { 1024, 576 }; // From old edition
 
 	// Create window
 	sf::Vector2i physicalSize = GetPhysicalSize();
 	sf::RenderWindow window(sf::VideoMode(physicalSize.x, physicalSize.y), "View Image", sf::Style::Default);
+	window.setFramerateLimit(60);
 
 	// make test
 
-	TestElement k = TestElement(&window, &uim);
-	
+	TestElement k = TestElement(&window, &uim, 40, 40, "Oh my first");
+
+	TestElement ko = TestElement(&window, &uim, 100, 100, "Oh my second");
+
 	// Poll Events
 	while (window.isOpen()) {
 		sf::Event event;

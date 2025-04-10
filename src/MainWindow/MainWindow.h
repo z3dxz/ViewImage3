@@ -1,6 +1,6 @@
 #pragma once
 #include "../IncludeSFML.h"
-#include "../UIManager/UIManager.h"
+#include "../UserInterface/UIManager/UIManager.h"
 
 class MainWindow {
 	private:
@@ -13,9 +13,9 @@ class MainWindow {
 	sf::Vector2i vSize;
 
 
-	float w_scale;
+	float w_scale = 1.25f;
 
-	UIManager uim;
+	UIManager uim = UIManager(w_scale);
 
 
 	sf::Vector2i GetPhysicalSize();

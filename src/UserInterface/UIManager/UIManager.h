@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <functional>
-#include "../IncludeSFML.h"
+#include "../../IncludeSFML.h"
 
 enum UIElementEvent {
     UEE_CREATED, // These will get called by the HANDLER. Events from SFML will be passed to the handler
@@ -33,24 +33,34 @@ class UIElement {
 
 class UIManager {
     private:
+    // Vector to store all the UI elements
     std::vector<UIElement> uiElements;
-    UIElement* GetFrontElement(sf::Vector2i mousePosition);
+
+    
 
     public:
-    void RenderElement();
+
+    // DPI Scaling value
+    float scale;
+
+    // Gets the front-most element the mouse is touching
+    UIElement* GetFrontElement(sf::Vector2i mousePosition);
+
+    // Appends element to uiElements, registers it with UIManager
     void RegisterElement(UIElement& e);
+
+    // Returns the uiElements vector
     std::vector<UIElement>& GetElements();
 
-    // Events
-
-    // SFML Event Mouse
+    // Events that SFML call/bind to UIManager
     void SFML_Bind_Mouse(sf::Vector2i mousePosition, MouseBehavior mb);
-
     void SFML_Bind_RenderAllElements();
 
+    UIManager(float _scale);
 
+    // coordinates
 
-
-    UIManager();
+    sf::Vector2f Adj(sf::Vector2i input);
+    int Adj(int coord);
 
 };

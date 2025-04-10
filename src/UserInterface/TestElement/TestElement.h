@@ -4,7 +4,7 @@
 class TestElement {
     public:
 
-    TestElement(sf::RenderWindow* _window, UIManager* _uim);
+    TestElement(sf::RenderWindow* _window, UIManager* _uim, int posx, int posy, std::string custom_text);
 
     private:
 
@@ -13,7 +13,6 @@ class TestElement {
 
     UIElement test;
 	sf::RectangleShape rtest;
-	void testThingEvent(UIElement* test, UIElementEvent e, int data);
-
+	void testThingEvent(UIElement* test, UIElementEvent e, int data, std::string custom_text);
 
 };
