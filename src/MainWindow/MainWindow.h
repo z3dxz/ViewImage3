@@ -8,9 +8,10 @@ class MainWindow {
 	//class TestElement;
 
 	// SFML Window
-	sf::RenderWindow window;
+	sf::RenderWindow window; 
 
 	sf::Vector2i vSize;
+
 
 	float w_scale;
 

@@ -25,7 +25,7 @@ MainWindow::MainWindow() {
 
 	// make test
 
-	TestElement k = TestElement();
+	TestElement k = TestElement(&window, &uim);
 	
 	// Poll Events
 	while (window.isOpen()) {

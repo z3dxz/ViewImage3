@@ -9,12 +9,7 @@
 enum UIElementEvent {
     UEE_CREATED, // These will get called by the HANDLER. Events from SFML will be passed to the handler
     UEE_DESTROY,
-    UEE_MOUSE1DOWN,
-    UEE_MOUSE1UP,
-    UEE_MOUSE2DOWN,
-    UEE_MOUSE2UP,
-    UEE_MOUSE3DOWN,
-    UEE_MOUSE3UP,
+    UEE_MOUSE,
     UEE_RENDER
 };
 
@@ -33,7 +28,7 @@ class UIElement {
     std::string name;
     sf::Vector2i position;
     sf::Vector2i size;
-    std::function<void(UIElement*, UIElementEvent)> PushEvent = nullptr;
+    std::function<void(UIElement*, UIElementEvent, int data)> PushEvent = nullptr;
 };
 
 class UIManager {

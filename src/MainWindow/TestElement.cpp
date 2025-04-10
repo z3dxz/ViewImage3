@@ -1,27 +1,32 @@
 #include "TestElement.h"
 
 
-TestElement::TestElement() {
+TestElement::TestElement(sf::RenderWindow* _window, UIManager* _uim) {
+	window = _window;
+	uim = _uim;
 
     // test element
     test.name = "Test Element";
     test.position = {50, 50};
     test.size = {200,200};
 
-    test.PushEvent = [this](UIElement* test, UIElementEvent e) {
-        testThingEvent(test, e);
+    test.PushEvent = [this](UIElement* test, UIElementEvent e, int data) {
+        testThingEvent(test, e, data);
     };
 
-    GetUIManager().RegisterElement(test);
+    uim->RegisterElement(test);
 }
 
 
 
-void TestElement::testThingEvent(UIElement* test, UIElementEvent e) {
+void TestElement::testThingEvent(UIElement* test, UIElementEvent e, int data) {
 
     switch(e) {
-		case UEE_MOUSE1DOWN: {
-			generateBeep(500, 506);
+		case UEE_MOUSE: {
+			if(data == MB_LEFT_DOWN) {
+				std::cout << "Wow Clicky Down" << "\n";
+			}
+			std::cout << "Wow Clicky" << "\n";
 			break;
 		}
 		case UEE_RENDER: {
@@ -31,8 +36,8 @@ void TestElement::testThingEvent(UIElement* test, UIElementEvent e) {
 			rtest.setFillColor(sf::Color(0, 128, 0));
 			rtest.setOutlineThickness(2);
 			rtest.setOutlineColor(sf::Color(128,128,128));
-
-			GetWindow().draw(rtest);
+			
+			window->draw(rtest);
 			break;
 		}
 	}

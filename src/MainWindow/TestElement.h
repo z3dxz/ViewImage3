@@ -1,16 +1,19 @@
 #pragma once
-#include "MainWindow.h"
+#include "../UIManager/UIManager.h"
 
 class TestElement {
     public:
 
-    TestElement();
+    TestElement(sf::RenderWindow* _window, UIManager* _uim);
 
     private:
 
+    sf::RenderWindow* window;
+    UIManager* uim;
+
     UIElement test;
 	sf::RectangleShape rtest;
-	void testThingEvent(UIElement* test, UIElementEvent e);
+	void testThingEvent(UIElement* test, UIElementEvent e, int data);
 
 
 };

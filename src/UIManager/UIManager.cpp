@@ -32,7 +32,7 @@ UIElement* UIManager::GetFrontElement(sf::Vector2i mousePosition){
 void UIManager::SFML_Bind_Mouse(sf::Vector2i mousePosition, MouseBehavior mb) {
     UIElement* f = GetFrontElement(mousePosition);
     if(f != nullptr) {
-        f->PushEvent(f, UEE_MOUSE2DOWN);
+        f->PushEvent(f, UEE_MOUSE, mb);
     } else {
         // No element found, no event pushed
         std::cout << "No element found, no element pushed" << "\n";
@@ -41,6 +41,6 @@ void UIManager::SFML_Bind_Mouse(sf::Vector2i mousePosition, MouseBehavior mb) {
 
 void UIManager::SFML_Bind_RenderAllElements() {
     for (UIElement& ele : uiElements) {  // TODO: Handle order of elements (z-index)
-        ele.PushEvent(&ele, UEE_RENDER);
+        ele.PushEvent(&ele, UEE_RENDER, 0);
     }
 }
