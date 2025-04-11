@@ -5,6 +5,7 @@ class TestElement {
     public:
 
     TestElement(sf::RenderWindow* _window, UIManager* _uim, int posx, int posy, std::string custom_text);
+    ~TestElement();
 
     private:
 

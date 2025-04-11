@@ -6,10 +6,11 @@ project(viewimage VERSION 3.0)
 
 file(GLOB_RECURSE SRC_FILES src/*.cpp)
 
-set(SFML_INCLUDE_DIR "D:/dev/library/SFML-2.6.2/include")
-set(SFML_DIR "D:/dev/library/SFML-2.6.2/lib/cmake/SFML")
+# For Windows Only
+#set(SFML_INCLUDE_DIR "D:/dev/library/SFML-2.6.2/include")
+#set(SFML_DIR "D:/dev/library/SFML-2.6.2/lib/cmake/SFML")
 
-set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Debug)
 
 find_package(SFML COMPONENTS network audio graphics window system REQUIRED)
 

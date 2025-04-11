@@ -34,7 +34,7 @@ class UIElement {
 class UIManager {
     private:
     // Vector to store all the UI elements
-    std::vector<UIElement> uiElements;
+    std::vector<UIElement*> uiElements;
 
     
 
@@ -47,10 +47,11 @@ class UIManager {
     UIElement* GetFrontElement(sf::Vector2i mousePosition);
 
     // Appends element to uiElements, registers it with UIManager
-    void RegisterElement(UIElement& e);
+    void RegisterElement(UIElement* e);
+    void UnRegisterElement(UIElement* e);
 
     // Returns the uiElements vector
-    std::vector<UIElement>& GetElements();
+    std::vector<UIElement*>& GetElements();
 
     // Events that SFML call/bind to UIManager
     void SFML_Bind_Mouse(sf::Vector2i mousePosition, MouseBehavior mb);

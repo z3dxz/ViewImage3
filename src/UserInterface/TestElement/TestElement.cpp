@@ -8,13 +8,17 @@ TestElement::TestElement(sf::RenderWindow* _window, UIManager* _uim, int posx, i
     // test element
     test.name = "Test Element";
     test.position = {50+posx, 50+posy};
-    test.size = {200,200};
+    test.size = {20,20};
 
     test.PushEvent = [this, custom_text](UIElement* test, UIElementEvent e, int data) {
         testThingEvent(test, e, data, custom_text);
     };
 
-    uim->RegisterElement(test);
+    uim->RegisterElement(&test);
+}
+
+TestElement::~TestElement() {
+	uim->UnRegisterElement(&test);
 }
 
 
@@ -29,7 +33,6 @@ void TestElement::testThingEvent(UIElement* test, UIElementEvent e, int data, st
 			break;
 		}
 		case UEE_RENDER: {
-
 			rtest.setPosition(uim->Adj(test->position));
 			rtest.setSize(uim->Adj(test->size));
 			sf::Vector2 mp = sf::Mouse::getPosition(*window);

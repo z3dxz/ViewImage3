@@ -1,17 +1,29 @@
 #include "UIManager.h"
+#include <algorithm>
 
 UIManager::UIManager(float _scale) {
     scale = _scale;
 }
 
 
-void UIManager::RegisterElement(UIElement& e) {
-    std::cout << "Registered: " << e.name;
+void UIManager::RegisterElement(UIElement* e) {
+    //std::cout << "Registered: " << e->name << "\n";
     // Adds element to vector
     uiElements.push_back(e);
 }
 
-std::vector<UIElement>& UIManager::GetElements() {
+void UIManager::UnRegisterElement(UIElement *e){
+    // Find and remove the missing element
+
+    auto it = std::find(uiElements.begin(), uiElements.end(), e);
+    if (it != uiElements.end()) {
+        uiElements.erase(it);
+    } else {
+        std::cout << "Can not unregister element";
+    }
+}
+
+std::vector<UIElement*>& UIManager::GetElements() {
     // Returns the UI element vector
     return uiElements;
 }
@@ -19,11 +31,11 @@ std::vector<UIElement>& UIManager::GetElements() {
 UIElement* UIManager::GetFrontElement(sf::Vector2i mousePosition){
     UIElement* FrontElement = nullptr;
     
-    for (UIElement& ele : uiElements) { 
+    for (UIElement* ele : uiElements) { 
         // Check coordinates
-        if(mousePosition.x > Adj(ele.position.x) && mousePosition.y > Adj(ele.position.y) && mousePosition.x <= (Adj(ele.position.x)+Adj(ele.size.x)) && mousePosition.y <= (Adj(ele.position.y)+Adj(ele.size.y)) ) {
+        if(mousePosition.x > Adj(ele->position.x) && mousePosition.y > Adj(ele->position.y) && mousePosition.x <= (Adj(ele->position.x)+Adj(ele->size.x)) && mousePosition.y <= (Adj(ele->position.y)+Adj(ele->size.y)) ) {
             // In check
-            FrontElement = &ele;
+            FrontElement = ele;
         }
     }
 
@@ -43,7 +55,7 @@ void UIManager::SFML_Bind_Mouse(sf::Vector2i mousePosition, MouseBehavior mb) {
 }
 
 void UIManager::SFML_Bind_RenderAllElements() {
-    for (UIElement& ele : uiElements) {  // TODO: Handle order of elements (z-index)
-        ele.PushEvent(&ele, UEE_RENDER, 0);
+    for (UIElement* ele : uiElements) {  // TODO: Handle order of elements (z-index)
+        (*ele).PushEvent(ele, UEE_RENDER, 0);
     }
 }
