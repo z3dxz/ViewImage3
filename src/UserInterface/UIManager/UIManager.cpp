@@ -33,7 +33,7 @@ UIElement* UIManager::GetFrontElement(sf::Vector2i mousePosition){
     
     for (UIElement* ele : uiElements) { 
         // Check coordinates
-        if(mousePosition.x > Adj(ele->position.x) && mousePosition.y > Adj(ele->position.y) && mousePosition.x <= (Adj(ele->position.x)+Adj(ele->size.x)) && mousePosition.y <= (Adj(ele->position.y)+Adj(ele->size.y)) ) {
+        if(mousePosition.x > Adji(ele->position.x) && mousePosition.y > Adji(ele->position.y) && mousePosition.x <= (Adji(ele->position.x)+Adji(ele->size.x)) && mousePosition.y <= (Adji(ele->position.y)+Adji(ele->size.y)) ) {
             // In check
             FrontElement = ele;
         }

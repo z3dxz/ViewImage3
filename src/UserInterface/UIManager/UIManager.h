@@ -61,7 +61,8 @@ class UIManager {
 
     // coordinates
 
-    sf::Vector2f Adj(sf::Vector2i input);
-    int Adj(int coord);
-
+    sf::Vector2i Adji(sf::Vector2i input);
+    int Adji(int coord);
+    sf::Vector2f Adjf(sf::Vector2i input);
+    float Adjf(float coord);
 };

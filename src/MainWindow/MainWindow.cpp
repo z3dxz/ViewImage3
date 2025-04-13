@@ -26,9 +26,9 @@ MainWindow::MainWindow() {
 
 	TestElement ko = TestElement(&window, &uim, 100, 100, "Oh my second");
 
-	for(int i=0; i<5000; i++){
-		TestElement* ko0 = new TestElement(&window, &uim, rand()%1000, rand()%700, "Oh my second");
-	}
+	//for(int i=0; i<500; i++){
+	//	TestElement* ko0 = new TestElement(&window, &uim, rand()%1000, rand()%700, "Oh my second");
+	//}
 
 	// Poll Events
 	while (window.isOpen()) {
