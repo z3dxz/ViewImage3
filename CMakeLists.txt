@@ -2,13 +2,18 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+
 project(viewimage VERSION 3.0)
 
 file(GLOB_RECURSE SRC_FILES src/*.cpp)
 
+
+# Windows Only Part 2
+#set(CMAKE_PREFIX_PATH "C:/msys64/mingw64/bin")
+
 # For Windows Only
-set(SFML_INCLUDE_DIR "D:/dev/library/SFML-2.6.2/include")
-set(SFML_DIR "D:/dev/library/SFML-2.6.2/lib/cmake/SFML")
+#set(SFML_INCLUDE_DIR "D:/dev/library/SFML-2.6.2/include")
+#set(SFML_DIR "D:/dev/library/SFML-2.6.2/lib/cmake/SFML")
 
 #set(CMAKE_BUILD_TYPE Debug)
 

@@ -13,7 +13,7 @@ class MainWindow {
 	sf::Vector2i vSize;
 
 
-	float w_scale = 1.25f;
+	float w_scale = 1.0f;
 
 	UIManager uim = UIManager(w_scale);
 

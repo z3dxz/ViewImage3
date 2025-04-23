@@ -26,6 +26,14 @@ TestElement::~TestElement() {
 void TestElement::testThingEvent(UIElement* test, UIElementEvent e, int data, std::string custom_text) {
 
     switch(e) {
+		case UEE_CREATED: {
+			// Nothing
+			break;
+		}
+		case UEE_DESTROY: {
+			// Nothing
+			break;
+		}
 		case UEE_MOUSE: {
 			if(data == MB_LEFT_DOWN) {
 				std::cout << custom_text << "\n";
@@ -37,7 +45,7 @@ void TestElement::testThingEvent(UIElement* test, UIElementEvent e, int data, st
 			rtest.setSize(uim->Adjf(test->size));
 			sf::Vector2 mp = sf::Mouse::getPosition(*window);
 			if(uim->GetFrontElement(mp) == test){
-				rtest.setFillColor(sf::Color(0, 128, 0));
+				rtest.setFillColor(sf::Color(0, 0, 255));
 			} else {
 				rtest.setFillColor(sf::Color(0, 0, 128));
 			}

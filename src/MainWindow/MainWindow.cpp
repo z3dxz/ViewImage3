@@ -2,6 +2,7 @@
 #include <iostream>
 #include "../dialog/sfdialog.h"
 #include "../UserInterface/uilist.h"
+// Only windows
 
 sf::Vector2i MainWindow::GetPhysicalSize() {
 	sf::Vector2i s;
@@ -31,6 +32,7 @@ MainWindow::MainWindow() {
 	//}
 
 	// Poll Events
+
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -64,13 +66,15 @@ MainWindow::MainWindow() {
 		}
 		
 
-		window.clear(sf::Color(0, 128, 128));
+		window.clear(sf::Color(128, 128, 128));
 
 		testboolean1 = true;
 
 		uim.SFML_Bind_RenderAllElements();
 
 		testboolean1 = false;
+
+
 
 		window.display();
 	}
