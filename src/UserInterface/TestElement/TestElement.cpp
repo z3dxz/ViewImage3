@@ -41,15 +41,15 @@ void TestElement::testThingEvent(UIElement* test, UIElementEvent e, int data, st
 			break;
 		}
 		case UEE_RENDER: {
-			rtest.setPosition(uim->Adjf(test->position));
-			rtest.setSize(uim->Adjf(test->size));
+			rtest.setPosition(uim->ProjectF(test->position));
+			rtest.setSize(uim->ProjectF(test->size));
 			sf::Vector2 mp = sf::Mouse::getPosition(*window);
-			if(uim->GetFrontElement(mp) == test){
-				rtest.setFillColor(sf::Color(0, 0, 255));
+			if(uim->GetFrontElement(uim->Virtualize(mp)) == test){
+				rtest.setFillColor(sf::Color(0, 60, 255));
 			} else {
-				rtest.setFillColor(sf::Color(0, 0, 128));
+				rtest.setFillColor(sf::Color(60, 128, 128));
 			}
-			rtest.setOutlineThickness(std::floor(uim->Adjf(1)));
+			rtest.setOutlineThickness(1);
 			rtest.setOutlineColor(sf::Color(255,255,255));
 			
 			window->draw(rtest);

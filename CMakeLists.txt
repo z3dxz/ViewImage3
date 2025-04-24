@@ -23,3 +23,6 @@ add_executable(viewimage ${SRC_FILES})
 
 target_link_libraries(viewimage sfml-network sfml-audio sfml-graphics sfml-window sfml-system)
 #target_link_libraries(viewimage PUBLIC ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+if (WIN32)
+    target_link_libraries(viewimage dwmapi)
+endif()

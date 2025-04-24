@@ -6,11 +6,17 @@
 #include <functional>
 #include "../../IncludeSFML.h"
 
+
 enum UIElementEvent {
     UEE_CREATED, // These will get called by the HANDLER. Events from SFML will be passed to the handler
     UEE_DESTROY,
     UEE_MOUSE,
     UEE_RENDER
+};
+
+struct VCoord {
+    int x;
+    int y;
 };
 
 enum MouseBehavior {
@@ -26,8 +32,8 @@ enum MouseBehavior {
 class UIElement {
     public:
     std::string name;
-    sf::Vector2i position;
-    sf::Vector2i size;
+    VCoord position;
+    VCoord size;
     std::function<void(UIElement*, UIElementEvent, int data)> PushEvent = nullptr;
 };
 
@@ -41,10 +47,10 @@ class UIManager {
     public:
 
     // DPI Scaling value
-    float scale;
+    float* scaleValue;
 
     // Gets the front-most element the mouse is touching
-    UIElement* GetFrontElement(sf::Vector2i mousePosition);
+    UIElement* GetFrontElement(VCoord mousePosition);
 
     // Appends element to uiElements, registers it with UIManager
     void RegisterElement(UIElement* e);
@@ -54,15 +60,16 @@ class UIManager {
     std::vector<UIElement*>& GetElements();
 
     // Events that SFML call/bind to UIManager
-    void SFML_Bind_Mouse(sf::Vector2i mousePosition, MouseBehavior mb);
+    void SFML_Bind_Mouse(sf::Vector2i inputMouse, MouseBehavior mb);
     void SFML_Bind_RenderAllElements();
 
-    UIManager(float _scale);
+    UIManager(float* _scale);
 
     // coordinates
 
-    sf::Vector2i Adji(sf::Vector2i input);
-    int Adji(int coord);
-    sf::Vector2f Adjf(sf::Vector2i input);
-    float Adjf(float coord);
+    sf::Vector2i ProjectI(VCoord coordinate);
+    sf::Vector2f ProjectF(VCoord coordinate);
+
+    VCoord Virtualize(sf::Vector2f input);
+    VCoord Virtualize(sf::Vector2i input);
 };

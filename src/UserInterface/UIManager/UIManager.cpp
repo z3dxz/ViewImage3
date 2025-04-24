@@ -1,10 +1,9 @@
 #include "UIManager.h"
 #include <algorithm>
 
-UIManager::UIManager(float _scale) {
-    scale = _scale;
+UIManager::UIManager(float* _scale) {
+    scaleValue = _scale;
 }
-
 
 void UIManager::RegisterElement(UIElement* e) {
     //std::cout << "Registered: " << e->name << "\n";
@@ -28,12 +27,12 @@ std::vector<UIElement*>& UIManager::GetElements() {
     return uiElements;
 }
 
-UIElement* UIManager::GetFrontElement(sf::Vector2i mousePosition){
+UIElement* UIManager::GetFrontElement(VCoord mousePosition){
     UIElement* FrontElement = nullptr;
     
     for (UIElement* ele : uiElements) { 
         // Check coordinates
-        if(mousePosition.x > Adji(ele->position.x) && mousePosition.y > Adji(ele->position.y) && mousePosition.x <= (Adji(ele->position.x)+Adji(ele->size.x)) && mousePosition.y <= (Adji(ele->position.y)+Adji(ele->size.y)) ) {
+        if(mousePosition.x > ele->position.x && mousePosition.y > ele->position.y && mousePosition.x <= ele->position.x + ele->size.x && mousePosition.y <= (ele->position.y+ele->size.y) ) {
             // In check
             FrontElement = ele;
         }
@@ -44,8 +43,9 @@ UIElement* UIManager::GetFrontElement(sf::Vector2i mousePosition){
 
 // SFML Bind Events
 
-void UIManager::SFML_Bind_Mouse(sf::Vector2i mousePosition, MouseBehavior mb) {
-    UIElement* f = GetFrontElement(mousePosition);
+void UIManager::SFML_Bind_Mouse(sf::Vector2i inputMouse, MouseBehavior mb) {
+    VCoord fromMousePos = Virtualize(inputMouse);
+    UIElement* f = GetFrontElement(fromMousePos);
     if(f != nullptr) {
         f->PushEvent(f, UEE_MOUSE, mb);
     } else {

@@ -10,17 +10,12 @@ class MainWindow {
 	// SFML Window
 	sf::RenderWindow window; 
 
-	sf::Vector2i vSize;
+	VCoord size;
 
+	float w_scale = 1.25f;
 
-	float w_scale = 1.0f;
+	UIManager uim = UIManager(&w_scale);
 
-	UIManager uim = UIManager(w_scale);
-
-
-	sf::Vector2i GetPhysicalSize();
-
-	
 public:
 	inline UIManager& GetUIManager() {
 		return uim;
@@ -30,7 +25,6 @@ public:
 	}
 
 	MainWindow();
-	bool testboolean1 = false;
 
 	void setScale();
 };
