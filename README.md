@@ -13,7 +13,7 @@ The old viewer's code was extremely hard to read and was a mess. This code is go
 ## How
 
 - The old viewer was written using the **Win32 API** which was painful and slow, as well as being exclusive to windows  
-- This new image viewer is going to be written mostly in **SFML** which is cross-platform, hardware accelerated, and produce cleaner code
+- This new image viewer is going to be written mostly in **SFML or OpenGL (haven't decided yet)** and it will be cross-platform, hardware accelerated, and produce cleaner code
 
 # Compatibility
 
